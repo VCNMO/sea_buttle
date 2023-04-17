@@ -1,9 +1,15 @@
 import tkinter as tk
-
+v = 10
+x = 0
+y = 3 
 def move_ship_right(even):
-    draw_game.coords(image_ship, 100, 0)
+    global x
+    x += v
+    draw_game.coords(image_ship, x, y)
 def move_ship_left(even):
-    draw_game.coords(image_ship, 0, 100)    
+    global x
+    x -= v
+    draw_game.coords(image_ship, x, y)    
 
 win = tk.Tk()
 draw_game = tk.Canvas(win, width=600, height=400, bg="#40B3E0")
@@ -13,7 +19,7 @@ pic_ship = tk.PhotoImage(file="ship_100.png")
 
 
 image_sea = draw_game.create_image(0, 100, anchor=tk.NW, image=pic_sea) 
-image_ship = draw_game.create_image(0, 3, anchor=tk.NW, image=pic_ship)
+image_ship = draw_game.create_image(x, y, anchor=tk.NW, image=pic_ship)
 win.bind('<Right>', move_ship_right)
 win.bind('<Left>', move_ship_left)
 
